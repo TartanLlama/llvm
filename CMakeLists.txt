@@ -331,6 +331,7 @@ set(LLVM_ALL_TARGETS
   Mips
   MSP430
   NVPTX
+  Pants
   PowerPC
   RISCV
   Sparc

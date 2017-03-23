@@ -6,7 +6,7 @@ using namespace llvm;
 #include "PantsGenRegisterInfo.inc"
 
 const MCPhysReg *PantsRegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
-    //TODO when calling conventions done
+    return CSR_SaveList;
 }
 
 BitVector PantsRegisterInfo::getReservedRegs(const MachineFunction &MF) const override {

@@ -8,14 +8,14 @@ include "llvm/Target/Target.td"
 // Descriptions
 //===----------------------------------------------------------------------===//
 
-include "PANTSRegisterInfo.td"
-include "PANTSInstrInfo.td"
-include "PANTSCallingConv.td"
+include "PantsRegisterInfo.td"
+include "PantsInstrInfo.td"
+include "PantsCallingConv.td"
 
-def PANTSInstrInfo : InstrInfo;
+def PantsInstrInfo : InstrInfo;
 
 //===----------------------------------------------------------------------===//
-// PANTS processors supported.
+// Pants processors supported.
 //===----------------------------------------------------------------------===//
 
 class Proc<string Name, list<SubtargetFeature> Features>
@@ -27,6 +27,6 @@ def : Proc<"generic", []>;
 // Declare the target which we are implementing
 //===----------------------------------------------------------------------===//
 
-def PANTS : Target {
-  let InstructionSet = PANTSInstrInfo;
+def Pants : Target {
+  let InstructionSet = PantsInstrInfo;
 }

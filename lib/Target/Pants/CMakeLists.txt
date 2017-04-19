@@ -9,4 +9,5 @@ add_llvm_target(PantsCodeGen
   PantsTargetMachine.cpp
   PantsInstPrinter.cpp      
   PantsRegisterInfo.cpp
+  PantsInstrInfo.cpp       
   )

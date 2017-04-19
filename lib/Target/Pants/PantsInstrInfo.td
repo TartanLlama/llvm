@@ -19,7 +19,7 @@ class PAr3<string OpcStr, SDNode OpNode, RegisterClass RC, ValueType Ty>
              !strconcat(OpcStr, " $rd $rs1 $rs2"),
              [(set Ty:$rd, (OpNode Ty:$rs1, Ty:$rs2))]>;
 
-class PAr2<string OpcStr, RegisterClass RC, ValueType Ty>
+class PAr2<string OpcStr, SDNode OpNode, RegisterClass RC, ValueType Ty>
     : InstPA<(outs RC:$rd), (ins RC:$rs1),
              !strconcat(OpcStr, " $rd $rs1"),
              [(set Ty:$rd, (OpNode Ty:$rs1))]>;
@@ -37,25 +37,25 @@ class PA0<string OpcStr>
 
 
 
-def ADD : PAr3<"add", add, IntReg, i32>;
-def SUB : PAr3<"sub", sub, IntReg, i32>;
-def MUL : PAr3<"mul", mul, IntReg, i32>;
-def DIV : PAr3<"div", div, IntReg, i32>;
-def AND : PAr3<"and", and, IntReg, i32>;
-def OR  : PAr3<"or", or, IntReg, i32>;
-def COMPARE : PAr3<"compare", compare, IntReg, i32>;
+def ADD : PAr3<"add", add, IntRegs, i32>;
+def SUB : PAr3<"sub", sub, IntRegs, i32>;
+def MUL : PAr3<"mul", mul, IntRegs, i32>;
+def DIV : PAr3<"div", udiv, IntRegs, i32>;
+def AND : PAr3<"and", and, IntRegs, i32>;
+def OR  : PAr3<"or", or, IntRegs, i32>;
+//def COMPARE : PAr3<"compare", compare, IntRegs, i32>;
 
-def NOT : PAr2<"not", IntReg, i32>;
+//def NOT : PAr2<"not", not, IntRegs, i32>;
 
-def COPY : PAr1<"copy", IntReg, i32>;
-def LOAD : PAr1<"load", IntReg, i32>;
-def STORE : PAr1<"store", IntReg, i32>;
-def BRANCH : PAr1<"branch", IntReg, i32>;
+def CPY : PAr1<"copy", IntRegs, i32>;
+def LOAD : PAr1<"load", IntRegs, i32>;
+def STORE : PAr1<"store", IntRegs, i32>;
+def BRANCH : PAr1<"branch", IntRegs, i32>;
 
-def SET : InstPA<(outs IntReg:$rd), (ins i32:$imm),
+def SET : InstPA<(outs IntRegs:$rd), (ins i32imm:$imm),
                  "set $rd $imm",
                  []>;
 
-def JUMP : InstPA0<"jump">;
-def CALL : InstPA0<"call">;
-def HALT : InstPA0<"halt">;
+def JUMP : PA0<"jump">;
+def CALL : PA0<"call">;
+def HALT : PA0<"halt">;

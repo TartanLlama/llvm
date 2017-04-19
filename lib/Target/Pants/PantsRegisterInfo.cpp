@@ -24,3 +24,9 @@ BitVector PantsRegisterInfo::getReservedRegs(const MachineFunction &MF) const ov
 unsigned PantsRegisterInfo::getFrameRegister(const MachineFunction &MF) const override {
     return PA::Fp;
 }
+
+void PantsRegisterInfo::eliminateFrameIndex(MachineBasicBlock::iterator II,
+                         int SPAdj, unsigned FIOperandNum,
+                         RegScavenger *RS = nullptr) {
+
+}

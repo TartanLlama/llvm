@@ -13,6 +13,11 @@ struct PantsRegisterInfo : public PantsGenRegisterInfo {
   const MCPhysReg *getCalleeSavedRegs(const MachineFunction *MF) const override;
   BitVector getReservedRegs(const MachineFunction &MF) const override;
   unsigned getFrameRegister(const MachineFunction &MF) const override;
+
+  void eliminateFrameIndex(MachineBasicBlock::iterator II,
+                           int SPAdj, unsigned FIOperandNum,
+                           RegScavenger *RS = nullptr) const override;
+
 };
 
 } // end namespace llvm
